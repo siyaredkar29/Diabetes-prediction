@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 import numpy as np
 
-# Load the trained model (this assumes you've already uploaded model.pkl to your Google Drive or project folder)
+
 model = joblib.load('diabetes_model_svm.pkl')
 
-# Streamlit title and description
+# Streamlit 
 st.title('Diabetes Prediction')
 st.write("""
          This is a simple app that predicts whether a person is diabetic or not based on their medical data.
@@ -22,12 +22,12 @@ bmi = st.number_input('BMI', min_value=0.0)
 diabetes_pedigree = st.number_input('Diabetes Pedigree Function', min_value=0.0)
 age = st.number_input('Age', min_value=0)
 
-# Create a button to trigger the prediction
+
 if st.button('Predict'):
-    # Prepare the input data
+ 
     input_data = np.array([pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree, age]).reshape(1, -1)
     
-    # Make prediction using the trained model
+
     prediction = model.predict(input_data)
     
     # Show the prediction result
@@ -36,6 +36,6 @@ if st.button('Predict'):
     else:
         st.write("Prediction: Not Diabetic")
 
-    # Optional: Show model prediction probability
+
     probability = model.predict_proba(input_data)
     st.write(f"Probability of being diabetic: {probability[0][1]:.2f}")
